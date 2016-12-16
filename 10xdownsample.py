@@ -161,6 +161,6 @@ if __name__ == '__main__':
 	print 'Done.'
 	# release memory
 	del sam_dict; gc.collect()
-	print '    %.1f% 10XG barcodes were filtered out.' % (100-n*100.0/m)
+	print '    %.2f' % (100-n*100.0/m) + '% of 10XG barcodes were filtered out.' 
 	tp2 = DT.now()
 	print '    Done in %ss.\nAll done.' % (tp2-tp1).seconds
