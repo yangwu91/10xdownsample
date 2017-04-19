@@ -3,17 +3,17 @@
 import sys
 from glob import glob
 def ArgvToDict(argv_list=sys.argv, required=[], optional={}, verbose=True):
+	assert type(argv_list) == list and type(required) == list and type(optional) == dict
 	argv_dict = {}
 	if '-h' not in argv_list and '--help' not in argv_list:
 		if len(argv_list) > 1:
 			argv_list = ' '.join(argv_list).replace(' --', ' -').split(' -')[1:] # already deleted sys.argv[0]
 			for opt_list in argv_list:
-				if ',' in opt_list:
-					opt_list = opt_list.split(',')
-				elif '*' in opt_list:
-					opt_list = glob(opt_list)
-				else:
-					opt_list = opt_list.split(' ')
+				opt_list = opt_list.split(' ', 1)
+				if ',' in opt_list[-1]:
+					opt_list = [opt_list[0],] + opt_list[-1].split(',')
+				elif '*' in opt_list[-1] or '?' in opt_list[-1]:
+					opt_list = [opt_list[0],] + glob(opt_list)
 				try:
 					opt_list.remove('')
 				except ValueError:
