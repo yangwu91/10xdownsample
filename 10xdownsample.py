@@ -148,7 +148,7 @@ if __name__ == '__main__':
 		tp2 = DT.now()
 		print 'Done.\n    Done in %ss.' % (tp2-tp1).seconds
 	else:
-		print 'Not supported format: %s' % suffqix
+		print 'Not supported format: %s' % suffix.upper()
 		quit()
 	print 'Outputting...',
 	sys.stdout.flush()
